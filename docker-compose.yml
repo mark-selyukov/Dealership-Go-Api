@@ -1,0 +1,20 @@
+version: '3.4'
+services:
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: car_dev
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: mysql
+    networks:
+      - default 
+  admin:
+    image: adminer
+    ports: 
+      - 8080:8080
+networks:
+  default:
+    name: dealership-default
