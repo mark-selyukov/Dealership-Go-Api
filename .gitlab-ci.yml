@@ -36,11 +36,10 @@ deploy:
     - tar -xvf helm-v3.6.3-linux-amd64.tar.gz
     - mv linux-amd64/helm .
   script:
-    - ./helm dependency update ./charts/dealership-api
+    - ./helm dependency update ./charts/dealership-go-api
     - |
-      ./helm upgrade dealership ./charts/dealership-api --install \
+      ./helm upgrade dealership ./charts/dealership-go-api --install \
         --set image_name=$(cat .image_name) \
         --set mysql.auth.password=$MYSQL_PASSWORD \
         --set mysql.auth.rootPassword=$MYSQL_PASSWORD \
-        --set mongodb.auth.rootPassword=$MONGODB_PASSWORD \
         --history-max 4
