@@ -23,7 +23,7 @@ container:
     expire_in: 30 days
   only:
     - develop
-    - main
+    - master
     - tag
 
 deploy:
