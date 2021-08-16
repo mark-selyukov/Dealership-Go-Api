@@ -1,5 +1,13 @@
 version: '3.4'
 services:
+  app: 
+    build: .
+    ports: 
+      - 3000:3000
+    environment: 
+      DATABASE_URL: mysql:mysql@tcp(mysql:3306)/car_dev
+    networks: 
+      - default
   mysql:
     image: mysql
     ports:
@@ -11,10 +19,7 @@ services:
       MYSQL_ROOT_PASSWORD: mysql
     networks:
       - default 
-  admin:
-    image: adminer
-    ports: 
-      - 8080:8080
+
 networks:
   default:
     name: dealership-default

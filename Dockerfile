@@ -1,20 +1,23 @@
-FROM golang:1.16-alpine
+FROM golang:1.16-alpine AS builder
 
-WORKDIR /go/src/app
+WORKDIR /go/src
 
-# COPY pkg ./
-# COPY svc ./
-# COPY go.mod ./
-# COPY go.sum ./
-# RUN go mod download
+COPY go.* ./
+RUN go mod download
 
-# COPY *.go ./
 COPY . .
 
-RUN go get -d -v ./...
-RUN go install -v ./...
-# RUN go build
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o app .
+
+FROM scratch
+
+WORKDIR /app
+
+COPY --from=builder /go/src/app .
+
+# Since we started from scratch, we'll copy the SSL root certificates from the builder
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 EXPOSE 8080
 
-CMD ["dealership-go-api"]
+ENTRYPOINT ["./app"]

@@ -4,7 +4,7 @@ includes:
   build: ./Taskfile_{{OS}}.yml
 
 tasks:
-  air:
+  start:
     deps:
       - task: build:air
     cmds:

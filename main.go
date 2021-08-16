@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/go-chi/chi/v5"
+	"gitlab.com/mark-selyukov-group/dealership-app/dealership-go-api/pkg/config"
 	"gitlab.com/mark-selyukov-group/dealership-app/dealership-go-api/svc/car"
 )
 
@@ -19,13 +20,17 @@ func runAPI() (err error) {
 	r.Route("/api/cars", carHandler.Routes)
 
 	server := http.Server{
-		Addr: ":3000",
+		Addr: fmt.Sprintf(":%d", config.Current().Port),
 		Handler: r,
 	}
 
 	fmt.Println("Starting Server :)")
 
 	return server.ListenAndServe()
+}
+
+func init() {
+	config.Read()
 }
 
 func main() {
