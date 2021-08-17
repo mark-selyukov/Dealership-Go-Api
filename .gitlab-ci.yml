@@ -41,5 +41,5 @@ deploy:
       ./helm upgrade dealership-go ./charts/dealership-go --install \
         --set image_name=$(cat .image_name) \
         --set mysql.auth.password=$MYSQL_PASSWORD \
-        --set mysql.auth.rootPassword=$MYSQL_PASSWORD \
-        --history-max 4
+        --set mysql.auth.rootPassword=$MYSQL_ROOT_PASSWORD \
+        --history-max 2
