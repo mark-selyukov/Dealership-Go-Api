@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 )
@@ -33,6 +34,8 @@ func Read() {
 		Port: envInt("PORT", 3000),
 		DatabaseURL: envStr("DATABASE_URL", "mysql:mysql@tcp(localhost:3306)/car_dev"),
 	}
+	fmt.Println("The current port is: ", currentConfig.Port)
+	fmt.Println("The current url is: ", currentConfig.DatabaseURL)
 }
 
 func Current() *Struct {
