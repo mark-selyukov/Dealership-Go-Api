@@ -17,7 +17,7 @@ func runAPI() (err error) {
 	if err != nil {
 		return
 	}
-	r.Route("/api/cars", carHandler.Routes)
+	r.Route("/api/car", carHandler.Routes)
 
 	server := http.Server{
 		Addr: fmt.Sprintf(":%d", config.Current().Port),
