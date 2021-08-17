@@ -11,7 +11,8 @@ mysqlSecret:
   secretName: dealership-mysql
   key: url  
 
-imagePullSecrets: []
+imagePullSecrets: 
+- name: gitlab
 nameOverride: ""
 fullnameOverride: ""
 
