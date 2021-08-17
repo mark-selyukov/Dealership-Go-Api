@@ -37,6 +37,12 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef: 
+                  name: {{ .Values.mysqlSecret.secretName}}
+                  key: {{ .Values.mysqlSecret.key}}
           livenessProbe:
             httpGet:
               path: /
