@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/jmoiron/sqlx"
 )
@@ -27,5 +28,7 @@ func (s Car) List(ctx context.Context, limit, skip uint) ([]string, error) {
 		rows.Scan(&s)
 		arr = append(arr, s)
 	}
+	fmt.Println("This is the arr")
+	fmt.Println(arr)
 	return arr, nil
 }
