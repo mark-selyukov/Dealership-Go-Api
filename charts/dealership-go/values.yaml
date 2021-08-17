@@ -8,7 +8,7 @@ image:
   pullPolicy: IfNotPresent
 
 mysqlSecret:
-  secretName: dealership-mysql
+  secretName: dealership-go-mysql
   key: url  
 
 imagePullSecrets: 
