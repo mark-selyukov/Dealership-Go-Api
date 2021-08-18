@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"os"
 	"strconv"
 )
@@ -16,7 +15,6 @@ var currentConfig *Struct
 func envStr(key, defaultValue string) string {
 	val := os.Getenv(key)
 	if val == "" {
-		fmt.Println("Returning a default value for port")
 		return defaultValue
 	}
 	return val
@@ -32,7 +30,7 @@ func envInt(key string, defaultValue int) int {
 
 func Read() {
 	currentConfig = &Struct{
-		Port: envInt("PORT", 3000),
+		Port: envInt("PORT", 80),
 		DatabaseURL: envStr("DATABASE_URL", "mysql:mysql@tcp(localhost:3306)/car_dev"),
 	}
 }
