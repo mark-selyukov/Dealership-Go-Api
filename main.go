@@ -24,7 +24,7 @@ func runAPI() (err error) {
 		Handler: r,
 	}
 
-	fmt.Println("Starting Server :)")
+	fmt.Println("Starting Server on: ", config.Current().Port)
 
 	return server.ListenAndServe()
 }
