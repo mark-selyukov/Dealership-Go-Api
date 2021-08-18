@@ -18,6 +18,6 @@ COPY --from=builder /go/src/app .
 # Since we started from scratch, we'll copy the SSL root certificates from the builder
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-EXPOSE 8080
+EXPOSE 80
 
 ENTRYPOINT ["./app"]
