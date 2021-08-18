@@ -30,7 +30,7 @@ func envInt(key string, defaultValue int) int {
 
 func Read() {
 	currentConfig = &Struct{
-		Port: envInt("PORT", 80),
+		Port: envInt("PORT", 3000),
 		DatabaseURL: envStr("DATABASE_URL", "mysql:mysql@tcp(localhost:3306)/car_dev"),
 	}
 }
