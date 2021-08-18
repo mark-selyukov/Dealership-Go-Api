@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 )
@@ -15,6 +16,7 @@ var currentConfig *Struct
 func envStr(key, defaultValue string) string {
 	val := os.Getenv(key)
 	if val == "" {
+		fmt.Println("Returning a default value for port")
 		return defaultValue
 	}
 	return val
