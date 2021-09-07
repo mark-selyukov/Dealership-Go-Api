@@ -1,9 +1,9 @@
-version: '3'
+version: "3"
 
 tasks:
+  startScript: ~/go/bin/air
   air:
     cmds:
       - curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
     status:
       - test -f ~/go/bin/air
-  

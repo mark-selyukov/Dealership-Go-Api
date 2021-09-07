@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 includes:
   build: ./Taskfile_{{OS}}.yml
@@ -8,5 +8,5 @@ tasks:
     deps:
       - task: build:air
     cmds:
-      - ~/go/bin/air
+      - task: build:startScript
     silent: true

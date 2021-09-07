@@ -1,1 +1,10 @@
-version: '3'
+version: "3"
+
+tasks:
+  startScript: air
+  air:
+    cmds:
+      - curl -o 'C:\Program Files\Go\bin\install.sh' https://raw.githubusercontent.com/cosmtrek/air/master/install.sh
+      - (cd 'C:\Program Files\Go' && 'C:\Program Files\Git\bin\sh.exe' 'C:\Program Files\Go\bin\install.sh')
+    status:
+      - Test-Path "C:\Program Files\Go\bin\air.exe"
