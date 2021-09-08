@@ -17,10 +17,13 @@ func NewCar(db *sqlx.DB) Car {
 }
 
 func (s Car) List(ctx context.Context, limit, skip uint) ([]string, error) {
+	s.db.MustExec(insertQuery, "BMW")
+
 	rows, err := s.db.QueryContext(ctx, listQuery)
 	if err != nil {
 		return nil, err
 	}
+
 	var arr []string
 	for rows.Next() {
 		var s string

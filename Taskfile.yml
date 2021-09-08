@@ -10,3 +10,15 @@ tasks:
     cmds:
       - task: build:startScript
     silent: true
+
+  dockerUp:
+    cmds:
+      - docker build -t dealership-go-api_app .
+      - docker-compose up
+
+  dockerDown:
+    cmds:
+      - docker rm -f dealership-go-api_app_1
+      - docker rm -f dealership-go-api_mysql_1
+      - docker rm -f dealership-go-api_dbMigrate_1
+    silent: true

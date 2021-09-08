@@ -6,6 +6,9 @@ services:
       - 3000:3000
     environment:
       DATABASE_URL: mysql:mysql@tcp(mysql:3306)/car_dev
+    depends_on:
+      mysql:
+        condition: service_healthy
     networks:
       - default
   mysql:
@@ -17,6 +20,10 @@ services:
       MYSQL_USER: mysql
       MYSQL_PASSWORD: mysql
       MYSQL_ROOT_PASSWORD: mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 5
     networks:
       - default
   dbMigrate:
@@ -28,7 +35,8 @@ services:
       - -database=mysql:mysql@tcp(mysql:3306)/car_dev
       - up
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     networks:
       - default
 
