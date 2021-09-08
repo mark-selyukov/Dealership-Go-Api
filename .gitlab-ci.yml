@@ -6,6 +6,24 @@ variables:
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""
 
+migratable:
+  stage: test
+  image:
+    name: migrate/migrate
+    entrypoint: [""]
+  services:
+    - mysql
+  script:
+    - migrate -path ./migrations -database $DATABASE_URL up
+    - migrate -path ./migrations -database $DATABASE_URL down -all
+    # TODO: dump tables to output for manual verification
+  variables:
+    DATABASE_URL: mysql:mysql@tcp(mysql:3306)/car_dev
+    MYSQL_USER: mysql
+    MYSQL_PASSWORD: $MYSQL_PASSWORD
+    MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+    MYSQL_DATABASE: car_dev
+
 container:
   stage: containerize
   image: docker:20

@@ -1,12 +1,12 @@
-version: '3.4'
+version: "3.4"
 services:
-  app: 
+  app:
     build: .
-    ports: 
+    ports:
       - 3000:3000
-    environment: 
+    environment:
       DATABASE_URL: mysql:mysql@tcp(mysql:3306)/car_dev
-    networks: 
+    networks:
       - default
   mysql:
     image: mysql
@@ -18,7 +18,19 @@ services:
       MYSQL_PASSWORD: mysql
       MYSQL_ROOT_PASSWORD: mysql
     networks:
-      - default 
+      - default
+  dbMigrate:
+    image: migrate/migrate
+    volumes:
+      - ./migrations:/migrations
+    command:
+      - -path=/migrations/
+      - -database=mysql:mysql@tcp(mysql:3306)/car_dev
+      - up
+    depends_on:
+      - mysql
+    networks:
+      - default
 
 networks:
   default:
