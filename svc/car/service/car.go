@@ -17,9 +17,10 @@ func NewCar(db *sqlx.DB) Car {
 }
 
 func (s Car) List(ctx context.Context, limit, skip uint) ([]string, error) {
-	s.db.MustExec(insertQuery, "BMW")
+	// s.db.MustExec(insertQuery, "BMW")
 
-	rows, err := s.db.QueryContext(ctx, listQuery)
+	// rows, err := s.db.QueryContext(ctx, listQuery)
+	rows, err := s.db.QueryContext(ctx, "SELECT CURRENT_TIMESTAMP()")
 	if err != nil {
 		return nil, err
 	}
