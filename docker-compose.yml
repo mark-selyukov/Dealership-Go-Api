@@ -22,7 +22,7 @@ services:
       MYSQL_ROOT_PASSWORD: mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      timeout: 20s
+      timeout: 10s
       retries: 5
     networks:
       - default
