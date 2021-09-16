@@ -12,6 +12,11 @@ mysqlSecret:
   secretName: dealership-go-mysql
   key: url
 
+mysql:
+  auth:
+    username: car_service
+    database: car_prod
+
 imagePullSecrets:
   - name: gitlab
 nameOverride: ""
